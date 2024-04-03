@@ -33,12 +33,10 @@ class IsolationForestScoreTransformer(BaseEstimator, TransformerMixin):
         return np.column_stack((X, scores))
 
 # Paths to the data files
-path = r"C:\Users\BHARAT\Downloads\credit-card-fraud-prediction\train.csv"
-path1 = r"C:\Users\BHARAT\Downloads\credit-card-fraud-prediction\test.csv"
 
 # Load data
-data = pd.read_csv(path)
-test = pd.read_csv(path1)
+data = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
 
 # Preprocessing
 data.columns = data.columns.str.lower()
@@ -93,7 +91,7 @@ test = test[['id', 1]]
 test = test.round(1)
 
 # Save predictions to a CSV file
-test.to_csv('C:/Users/BHARAT/Desktop/credit_prediction.csv', index=False)
+test.to_csv('credit_prediction.csv', index=False)
 
 # Cross-validation for model evaluation
 cv = cross_val_score(pipe, X_train, y_train, cv=10, scoring='roc_auc', n_jobs=-1)
